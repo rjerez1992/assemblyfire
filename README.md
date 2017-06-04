@@ -1,12 +1,12 @@
 # Assemblyfire IDE
-Simple IDE for the minimalized version of asm low-level programming language, teached at the first programming course in my university. Features simple syntax highlightning and code simulation. Written in C# using WPF with MahApps.Metro
+Simple IDE for the minimalized version of asm low-level programming language, teached at the first programming course in my university. Features simple syntax highlighting and code simulation. Written in C# using WPF with [MahApps.Metro](http://mahapps.com/)
 
 ![Alt text](https://raw.githubusercontent.com/rjerez1992/assemblyfire/master/other/picture.png)
 
 ### Features ###
 
 * Code execution simulator
-* Syntax highlighning
+* Syntax highlighting
 * Syntax checker
 * Memory line counter
 * Cheatsheet of basic commands
