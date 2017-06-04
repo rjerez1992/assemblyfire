@@ -1,0 +1,497 @@
+﻿<Controls:MetroWindow
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"  
+        xmlns:local="clr-namespace:AssemblyFireView"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+    xmlns:ControlzEx="clr-namespace:ControlzEx;assembly=MahApps.Metro"
+    x:Name="Assemblyfire" x:Class="AssemblyFireView.MainWindow"                   
+          xmlns:fac="clr-namespace:FontAwesome.WPF.Converters;assembly=FontAwesome.WPF"
+    mc:Ignorable="d"    
+        
+    Title="Assemblyfire" Height="600" Width="1000" Background="#FF2D2D30" TitleAlignment="Left" TitleCaps="False" WindowStartupLocation="CenterScreen" TitleForeground="#FFA0A0A0" WindowTitleBrush="#FF2D2D30" TitleCharacterCasing="Normal" IconOverlayBehavior="Always" NonActiveGlowBrush="{x:Null}" ShowIconOnTitleBar="True"
+                      ControlzEx:KeyboardNavigationEx.AlwaysShowFocusVisual="True" IsManipulationEnabled="True" Padding="-1,0,0,0" Grid.IsSharedSizeScope="True"
+    
+   Closing="WindowClosingEvent" MinWidth="1000" MinHeight="600" SaveWindowPosition="True"
+    >
+
+
+
+    <metro:MetroWindow.BorderBrush>
+        <SolidColorBrush Color="#FF007ACC" Opacity="0.65"/>
+    </metro:MetroWindow.BorderBrush>
+
+    <metro:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <Grid Width="{TemplateBinding Width}"
+                 Height="{TemplateBinding Height}"
+                 Margin="14,7,0,0"                 
+                 Background="Transparent"
+                 RenderOptions.EdgeMode="Aliased"
+                 RenderOptions.BitmapScalingMode="HighQuality">
+                <TextBlock Text="&#xf06d;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="18" Foreground="LightGray"/>
+            </Grid>
+        </DataTemplate>
+    </metro:MetroWindow.IconTemplate>
+
+    <!-- DOCK PANEL MAYOR 
+    ==========================================================-->
+    <DockPanel Margin="0" LastChildFill="True" Grid.IsSharedSizeScope="True" ClipToBounds="True">
+
+
+        <Grid DockPanel.Dock="Top" Margin="9,2,0,5" Height="25">
+           <!-- <ToolBarTray Height="30"  Margin="9,3,11,5" ClipToBounds="True" Background="#FF2D2D30" Focusable="True">
+                <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="0" Focusable="True" > -->
+
+            <Grid x:Name="toolBar" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="400" Visibility="Visible">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button x:Name="btnNew" Grid.Column="0" Margin="2,0" Padding="3,0,3,0" Click="NewFileButton" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text=" &#xf15b;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="15" Foreground="Ivory" Margin="0,1,5,0"/>
+                            <TextBlock Text=" Nuevo " VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                <Button x:Name="btnOpen" Grid.Column="1" Margin="2,0" Padding="3,0,3,0" Click="OpenFileButton" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                            <TextBlock Text=" &#xf07c;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="16" Foreground="SandyBrown" Margin="0,2,5,0"/>
+                            <TextBlock Text="Abrir " VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+
+                <Button x:Name="btnSave" Grid.Column="2" Margin="2,0" Padding="3,0,3,0" Click="SaveFileButton" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text=" &#xf0c7;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="15" Foreground="#FF007ACC" Margin="0,1,5,0"/>
+                            <TextBlock Text=" Guardar " VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                
+                    <!-- Separator -->
+                <TextBlock Text="|" Grid.Column="3" Foreground="#FF474747" HorizontalAlignment="Center" FontSize="18" Margin="2,0,2,3"/>
+
+
+                <Button x:Name="btnCheck" Grid.Column="4" Click="ButtonCheckCode" Margin="2,0" Padding="3,0,3,0" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="btnCheckIcon" Text=" &#xf002;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="15" Foreground="CornflowerBlue" Margin="0,0,4,0"/>
+                            <TextBlock Text=" Revisar " VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                <Button x:Name="btnReCheck" Grid.Column="4" Click="ButtonCheckCode" Margin="2,0" Padding="3,0,3,0" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text=" &#xf01e;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="15" Foreground="CornflowerBlue" Margin="0,2,5,0"/>
+                            <TextBlock Text=" Revisar " VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                <Button x:Name="btnRun" Margin="2,0" Grid.Column="5" Padding="3,0,3,0" Click="RunSimulationButton" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="icoBtnRun" Text=" &#xf04b;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="15" Foreground="Green" Margin="0,1,5,0"/>
+                            <TextBlock x:Name="txtBtnRun" Text=" Ejecutar " VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+
+            </Grid>
+
+
+
+            <!-- RUUUUUUN TOOL BAR ===================================-->
+
+
+            <Grid x:Name="runToolBar" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="500" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+
+
+
+                <Button x:Name="btnStopRun" Grid.Column="0" Margin="2,0" Padding="3,0,3,0" Click="StopSimulationButton" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" &#xf04d;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="15" Foreground="Crimson" Margin="0,1,5,0"/>
+                        <TextBlock Text=" Terminar ejecucion " VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Separator -->
+                <TextBlock Text="|" Grid.Column="1" Foreground="#FF474747" HorizontalAlignment="Center" FontSize="18" Margin="2,0,2,3"/>
+
+
+
+                <Button x:Name="btnRunReset" Grid.Column="2" Margin="2,0" Padding="3,0,3,0" Click="ResetSimulation" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" &#xf049;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="14" Foreground="CornflowerBlue" Margin="0,1,5,0"/>
+                        <TextBlock Text=" Reset " VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="btnTest" Grid.Column="3" Margin="2,0" Padding="3,0,3,0" Click="StepBackSimulation" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" &#xf048;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="14" Foreground="CornflowerBlue" Margin="0,1,5,0"/>
+                        <TextBlock Text=" Atras " VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="btnRunStep" Grid.Column="4" Margin="2,0" Padding="3,0,3,0"  Click="StepSimulation" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" Ejecutar " VerticalAlignment="Center" />
+                        <TextBlock Text=" &#xf051;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="14" Foreground="CornflowerBlue" Margin="0,1,5,0"/>
+
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="btnRunAll" Grid.Column="5" Margin="2,0" Padding="3,0,3,0" Click="AllSimulation" BorderThickness="0" Background="#FF2D2D30" FontWeight="Normal" FontSize="12" MinWidth="400" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" Ejecutar todo " VerticalAlignment="Center" />
+                        <TextBlock Text=" &#xf050;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="14" Foreground="CornflowerBlue" Margin="0,1,5,0"/>
+
+                    </StackPanel>
+                </Button>
+
+                <!-- TEST BUTTONS!!!! 
+                    <Button x:Name="btnTest" Margin="0,0,2,0" Padding="3,0,3,0" BorderThickness="0" Click="btnTest_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text=" Test " VerticalAlignment="Center" />
+                            <TextBlock Text=" &#xf050;" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="14" Foreground="CornflowerBlue" Margin="0,1,5,0"/>
+
+                        </StackPanel>
+                    </Button> -->
+
+
+
+            </Grid>
+
+
+
+        </Grid>
+
+
+        <!-- DOCK PANEL DE FOOTER
+         ==========================================================-->
+        <DockPanel x:Name="bottomStatusBar" DockPanel.Dock="Bottom" Background="#FF007ACC" Margin="0,8,0,0" MinHeight="23" VerticalAlignment="Center" MaxHeight="23">
+
+            <Grid Margin="11,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                
+
+                
+                
+                <TextBlock  x:Name="bottomWindowStatus" Foreground="#FFF0F0F0" Text="Editor de codigo" UseLayoutRounding="False" VerticalAlignment="Center" LineStackingStrategy="BlockLineHeight" HorizontalAlignment="Left"/>
+
+                <Grid Grid.Column="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                <Button  Grid.Column="1" Style="{DynamicResource SquareButtonStyle}" Click="ButtonShowInfo" BorderThickness="0,0,0,0" Foreground="#FFECECEC" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,1,0">
+
+                    <DockPanel>
+                             <TextBlock x:Name="tbVersion" DockPanel.Dock="Left" Text="Build" FontSize="12" FontWeight="Normal" VerticalAlignment="Center" />
+                    </DockPanel>
+                </Button>
+                    
+                    <Button  Grid.Column="0" Style="{DynamicResource SquareButtonStyle}" Click="ButtonShowCheatsheet" BorderThickness="0,0,10,0" Foreground="#FFECECEC" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0">
+
+                        <DockPanel>
+                                <TextBlock DockPanel.Dock="Left" Text="Cheatsheet " FontSize="12" FontWeight="Normal" VerticalAlignment="Center" />
+                        </DockPanel>
+                    </Button>
+
+                    <!--<TextBlock  Grid.Column="1" x:Name="tbVersion" Foreground="#FFF0F0F0" Text="texto-version" UseLayoutRounding="False" VerticalAlignment="Center" LineStackingStrategy="BlockLineHeight" HorizontalAlignment="Right"/>
+               --> </Grid>
+
+            </Grid>
+        </DockPanel>
+
+        <!-- Bottom console -->
+        <DockPanel x:Name="CheckPanel" DockPanel.Dock="Bottom" Margin="0,10,0,0">
+
+            <Grid DockPanel.Dock="Top" Margin="11,0" Background="#FF4C4C4F" Height="23">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+
+                <TextBlock   Foreground="#FFF0F0F0" Text="Resultado de la revision" UseLayoutRounding="False" VerticalAlignment="Center" LineStackingStrategy="BlockLineHeight" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+                <Button Grid.Column="1" Style="{DynamicResource SquareButtonStyle}" Click="ButtonHideCheckResult" BorderThickness="0,0,0,0" Foreground="#FFECECEC" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Right" Text="&#xf107;  " TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="16" Foreground="Pink"  Margin="0,2,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
+                        <TextBlock DockPanel.Dock="Left" Text="Ocultar " FontSize="12" FontWeight="Normal" VerticalAlignment="Center" />
+                    </DockPanel>
+                </Button>
+
+            </Grid>
+
+            <!-- Check code output box -->
+            <Border BorderThickness="1" BorderBrush="#FF4C4C4F" Margin="11,0">
+                <RichTextBox x:Name="CheckOutputBox" VerticalScrollBarVisibility="Visible" IsReadOnly="False" Background="#FF252525"  BorderBrush="#FF4C4C4F" BorderThickness="0" MinHeight="200" FontSize="14" FontFamily="Consolas" FontStretch="Expanded" Padding="3" Foreground="#FFE6E6E6" MaxHeight="200" VerticalAlignment="Bottom">
+
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </RichTextBox.Resources>
+
+                </RichTextBox>
+            </Border>
+        </DockPanel>
+
+
+        <!-- DOCK PANEL DE CENTRO
+        ==========================================================-->
+        <DockPanel>
+            <!-- Dock for the bottom console -->
+            <!-- Main central view -->
+            <DockPanel LastChildFill="true" Margin="11,0">
+                <!-- Line counter -->
+                <Border  x:Name="PanelLineCounter"  Width="44" Margin="0" BorderThickness="1,1,0,1" BorderBrush="#FF4C4C4F" DockPanel.Dock="Left" Visibility="Collapsed">
+                    <RichTextBox x:Name="LineCountBox" BorderThickness="0" BorderBrush="#FF2F2F30" ClipToBounds="True" Focusable="False" IsUndoEnabled="False" IsReadOnly="True" FontWeight="Normal" AutoWordSelection="False" AcceptsReturn="False" Block.TextAlignment="Right" FontSize="16" Foreground="CornflowerBlue" FontFamily="Consolas" Margin="0,0,1,0"/>
+                </Border>
+
+
+                <!-- RIGHT PANEL ===========================================-->
+                <Grid>
+                    <Border x:Name="SimulationPanel" Margin="0" BorderThickness="1" BorderBrush="#FF4C4C4F"  Visibility="Visible">
+                        <Grid Background="#FF252526">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <!-- FIRST COLUMN  MEMORY RUN-->
+                            <DockPanel  Background="#FF252526" Grid.Column="0">
+
+                                <!-- PC, Registers and Instructions -->
+                                <Grid DockPanel.Dock="Top" Margin="20,20,20,5" MinWidth="450" MaxWidth="500" HorizontalAlignment="Right">
+                                    <!-- IR -->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="IR" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" FontWeight="Bold" Margin="7,0,10,0"/>
+                                    <TextBox x:Name="RunBoxIR" Text="ADD R5, R7, R7"  IsReadOnly="True" Grid.Row="0" Grid.Column="1" Margin="0,0,7,0" Background="#FF363535" BorderBrush="Firebrick" BorderThickness="0,0,0,2" TextAlignment="Center"/>
+
+                                </Grid>
+
+                                <!-- PC, Flags -->
+                                <Grid DockPanel.Dock="Top" Margin="20,5" MinWidth="450" MaxWidth="500" HorizontalAlignment="Right">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="PC" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" Margin="7,0,0,0" FontWeight="Bold"/>
+                                    <TextBox x:Name="RunBoxPC" Text="0"  Grid.Row="0" Grid.Column="1" IsReadOnly="True" Margin="7,0,10,0" BorderThickness="0,0,0,2" Background="#FF363535" BorderBrush="Firebrick" TextAlignment="Center"></TextBox>
+
+                                    <TextBlock Text="NF" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" Margin="0" FontWeight="Bold"/>
+                                    <TextBox x:Name="RunBoxNF" Grid.Row="0" Grid.Column="3" IsReadOnly="True" Margin="10,0" BorderThickness="0,0,0,2" Background="#FF363535" BorderBrush="Firebrick" TextAlignment="Center"></TextBox>
+
+                                    <TextBlock Text="ZF" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" Margin="0" FontWeight="Bold"/>
+                                    <TextBox  x:Name="RunBoxZF"  Grid.Row="0" Grid.Column="5" IsReadOnly="True" Margin="10,0,7,0" BorderThickness="0,0,0,2" Background="#FF363535" BorderBrush="Firebrick" TextAlignment="Center"></TextBox>
+
+                                </Grid>
+
+                                <!-- Registers -->
+                                <Grid DockPanel.Dock="Top" Margin="20,20,20,0" MinWidth="450" MaxWidth="500" HorizontalAlignment="Right">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+
+                                    <!-- Register row 0 -->
+                                    <TextBlock Text="R0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold"/>
+                                    <TextBox  x:Name="RunBoxR0" Text="0" Grid.Row="1" Grid.Column="0" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R1" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold"/>
+                                    <TextBox x:Name="RunBoxR1" Text="0" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R2" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold"/>
+                                    <TextBox x:Name="RunBoxR2" Text="0" Grid.Row="1" Grid.Column="2" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R3" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold"/>
+                                    <TextBox x:Name="RunBoxR3" Text="0" Grid.Row="1" Grid.Column="3" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R4" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold"/>
+                                    <TextBox x:Name="RunBoxR4" Text="0" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <!-- Register row 1 -->
+                                    <TextBlock Text="R5" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold" Margin="0,10,0,0"/>
+                                    <TextBox x:Name="RunBoxR5" Text="0" Grid.Row="3" Grid.Column="0" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R6" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold" Margin="0,10,0,0"/>
+                                    <TextBox x:Name="RunBoxR6" Text="0" Grid.Row="3" Grid.Column="1" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R7" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold" Margin="0,10,0,0"/>
+                                    <TextBox x:Name="RunBoxR7" Text="0" Grid.Row="3" Grid.Column="2" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R8" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold" Margin="0,10,0,0"/>
+                                    <TextBox x:Name="RunBoxR8" Text="0" Grid.Row="3" Grid.Column="3" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R9" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold" Margin="0,10,0,0"/>
+                                    <TextBox  x:Name="RunBoxR9" Text="0" Grid.Row="3" Grid.Column="4" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <!-- Register row 2 -->
+                                    <TextBlock Text="R10" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold" Margin="0,10,0,0"/>
+                                    <TextBox x:Name="RunBoxR10" Text="0" Grid.Row="5" Grid.Column="0" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R11" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold" Margin="0,10,0,0"/>
+                                    <TextBox x:Name="RunBoxR11" Text="0" Grid.Row="5" Grid.Column="1" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                    <TextBlock Text="R12" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold" Margin="0,10,0,0"/>
+                                    <TextBox x:Name="RunBoxR12" Text="0" Grid.Row="5" Grid.Column="2" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+
+
+                                    <TextBlock Text="R15" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="WhiteSmoke" FontWeight="Bold" Margin="0,10,0,0"/>
+                                    <TextBlock Text="             &#xf023;" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Foreground="Crimson" FontWeight="Bold" Margin="0,11,0,0" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome"/>
+                                    <TextBox x:Name="RunBoxR15" Text="0" Grid.Row="5" Grid.Column="4" IsReadOnly="True" Margin="7,0" TextAlignment="Center" BorderBrush="Firebrick" BorderThickness="0,3,0,0" Background="#FF363535" Padding="0,2,0,0"/>
+
+                                </Grid>
+
+                                <!-- Variables manager -->
+                                <Grid DockPanel.Dock="Top" Margin="25,30,27,0" MaxWidth="436" HorizontalAlignment="Right">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>                                   
+
+                                   
+                                    <!-- Switch mantener 
+                                    <Button  x:Name="btnKeepValuesOff" Click="switchKeepValuesAtReset" Visibility="Collapsed"  Grid.Row="0"  BorderThickness="0" MinHeight="26" MinWidth="600" HorizontalAlignment="Center" Margin="0,0,0,20" HorizontalContentAlignment="Left" Padding="83,6,5,6" Background="{x:Null}" VerticalAlignment="Bottom">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text=" &#xf205; " TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="15" Foreground="Green" Margin="0,2,5,0"/>
+                                            <TextBlock Text=" Desactivar persistencia de valores en reset " VerticalAlignment="Center" FontSize="12" FontWeight="Normal" />
+                                        </StackPanel>
+                                    </Button>
+
+                                    Switch mantener 
+                                    <Button x:Name="btnKeepValuesOn" Click="switchKeepValuesAtReset" Grid.Row="3"  BorderThickness="0" MinHeight="26" MinWidth="600" HorizontalAlignment="Center" Margin="0,0,0,20" HorizontalContentAlignment="Left" Padding="83,6,5,6" VerticalAlignment="Bottom" Background="{x:Null}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text=" &#xf204; " TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" FontSize="15" Foreground="DarkGray" Margin="0,2,5,0"/>
+                                            <TextBlock Text=" Activar persistencia de valores en reset " VerticalAlignment="Center" FontSize="12" FontWeight="Normal" />
+                                        </StackPanel>
+                                    </Button> -->
+
+
+                                </Grid>
+
+
+
+
+                            </DockPanel>
+
+
+                            <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Column="1" Background="#FF252526" Margin="20" MinWidth="450" MaxWidth="510" HorizontalAlignment="Left" Focusable="False">
+                                <Grid x:Name="MemoryDisplayGrid" Margin="0,0,15,0" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </ScrollViewer>
+
+                        </Grid>
+                    </Border>
+                    <!-- RIGHT PANEL ===========================================-->
+
+
+
+
+                    <!-- Main edit box -->
+                    <Border x:Name="PanelCodeBox" Margin="0" BorderThickness="0,1,1,1" BorderBrush="#FF4C4C4F" Visibility="Collapsed" >
+                        <RichTextBox x:Name="CodeEditBox" BorderThickness="0" Foreground="White" ClipToBounds="True" FontWeight="Normal" Padding="1" CaretBrush="#FF1E9BF0" FontSize="16" TextChanged="CodeEditBox_TextChanged" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.ScrollChanged="CodeEditorBox_ScrollChanged" KeyUp="CodeEditBox_KeyUp" FontFamily="Consolas" FontStretch="Expanded" MinHeight="325" MinWidth="500">
+                            <RichTextBox.Resources>
+                                <Style TargetType="{x:Type Paragraph}">
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </RichTextBox.Resources>
+                            <RichTextBox.BorderBrush>
+                                <SolidColorBrush Color="White" Opacity="0.15"/>
+                            </RichTextBox.BorderBrush>
+                        </RichTextBox>
+                    </Border>
+
+                </Grid>
+            </DockPanel>
+
+
+
+
+        </DockPanel>
+
+
+
+
+
+
+    </DockPanel>
+</Controls:MetroWindow>
